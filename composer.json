@@ -1,0 +1,30 @@
+{
+  "name": "mabasic/crozilla-integration",
+  "description": "Generates XML response for crozilla real estate sync integration.",
+  "keywords": [
+    "crozilla",
+    "integration",
+    "real estate"
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.5",
+    "mockery/mockery": "0.9.*@dev"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mario Basic",
+      "email": "mario.basic@outlook.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Mabasic\\CrozillaIntegration\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
