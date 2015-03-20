@@ -71,38 +71,38 @@ class Property implements XmlSerializable {
             'price'         => [
                 'amount' => $this->price
             ],
-            'images'        => $this->writeImages($writer),
             'title'         => $this->title,
             'description'   => $this->description
         ];
 
-        $this->addLanguages($structure);
-
         $writer->write($structure);
+
+        $this->addLanguages($writer);
+
+        $this->addImages($writer);
     }
 
-    private function writeImages()
+    private function addImages(Writer $writer)
     {
-        $tmp = [];
+        $writer->startElement('images');
 
         foreach($this->images as $image)
         {
-            array_push($tmp, [
-                'image' => $image
-            ]);
+            $writer->startElement('image');
+            $writer->write($image);
+            $writer->endElement();
         }
 
-        return $tmp;
+        $writer->endElement();
     }
 
-    private function addLanguages($structure)
+    private function addLanguages(Writer $writer)
     {
         foreach($this->languages as $language)
         {
-            array_push($structure, [
-                "title-{$language->code}" => $language->title,
-                "description-{$language->code}" => $language->description,
-            ]);
+            $code = strtoupper($language['code']);
+            $writer->writeElement("title-{$code}", $language['title']);
+            $writer->writeElement("description-{$code}", $language['description']);
         }
     }
 }
