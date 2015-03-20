@@ -2,6 +2,10 @@
 
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Interface CrozillaInterface
+ * @package Mabasic\CrozillaIntegration
+ */
 interface CrozillaInterface {
 
     /**
@@ -12,8 +16,7 @@ interface CrozillaInterface {
 
     /**
      * @param $items
-     * @param $languages
      * @return string
      */
-    public function generateXML($items, $languages);
+    public function generateXML($items);
 }

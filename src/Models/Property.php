@@ -3,46 +3,92 @@
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
+/**
+ * Class Property
+ * @package Mabasic\CrozillaIntegration\Models
+ */
 class Property implements XmlSerializable {
 
+    /**
+     * @var
+     */
     public $propertyId;
+    /**
+     * @var
+     */
     public $dateListed;
+    /**
+     * @var
+     */
     public $propertyType;
+    /**
+     * @var
+     */
     public $listingType;
+    /**
+     * @var
+     */
     public $link;
+    /**
+     * @var
+     */
     public $postalCode;
+    /**
+     * @var
+     */
     public $city;
+    /**
+     * @var
+     */
     public $rooms;
+    /**
+     * @var
+     */
     public $bedrooms;
+    /**
+     * @var
+     */
     public $bathrooms;
+    /**
+     * @var
+     */
     public $propertySize;
+    /**
+     * @var
+     */
     public $landSize;
+    /**
+     * @var
+     */
     public $price;
-    public $images = [];
-    public $title;
-    public $description;
-
-    public $languages = [];
-    /*'code' => 'en',
-    'title' => 'some title',
-    'description' => 'some text'*/
 
     /**
-     * The xmlSerialize metod is called during xml writing.
+     * Sample:
+     * [ 'link1', 'link2', 'link3', ...]
      *
-     * Use the $writer argument to write its own xml serialization.
+     * @var array
+     */
+    public $images = [];
+    /**
+     * @var
+     */
+    public $title;
+    /**
+     * @var
+     */
+    public $description;
+
+    /**
+     * Sample:
+     * [[ 'code' => 'en',
+     * 'title' => 'some title',
+     * 'description' => 'some text' ], ...]
      *
-     * An important note: do _not_ create a parent element. Any element
-     * implementing XmlSerializble should only ever write what's considered
-     * its 'inner xml'.
-     *
-     * The parent of the current element is responsible for writing a
-     * containing element.
-     *
-     * This allows serializers to be re-used for different element names.
-     *
-     * If you are opening new elements, you must also close them again.
-     *
+     * @var array
+     */
+    public $languages = [];
+
+    /**
      * @param Writer $writer
      */
     function xmlSerialize(Writer $writer)
@@ -82,6 +128,9 @@ class Property implements XmlSerializable {
         $this->addImages($writer);
     }
 
+    /**
+     * @param Writer $writer
+     */
     private function addImages(Writer $writer)
     {
         $writer->startElement('images');
@@ -96,6 +145,9 @@ class Property implements XmlSerializable {
         $writer->endElement();
     }
 
+    /**
+     * @param Writer $writer
+     */
     private function addLanguages(Writer $writer)
     {
         foreach($this->languages as $language)

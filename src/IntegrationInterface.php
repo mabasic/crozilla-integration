@@ -2,13 +2,16 @@
 
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Interface IntegrationInterface
+ * @package Mabasic\CrozillaIntegration
+ */
 interface IntegrationInterface {
 
     /**
      * @param $items
-     * @param array $languages
      * @return Response
      */
-    public function integrate(array $items, array $languages = []);
+    public function integrate(array $items);
 
 }
