@@ -1,5 +1,7 @@
 <?php namespace Mabasic\CrozillaIntegration;
 
+use Mabasic\CrozillaIntegration\Models\Property;
+use Sabre\Xml\Writer;
 use Symfony\Component\HttpFoundation\Response;
 
 class Crozilla implements IntegrationInterface, CrozillaInterface {
@@ -9,12 +11,16 @@ class Crozilla implements IntegrationInterface, CrozillaInterface {
      */
     protected $bard;
 
+    protected $writer;
+
     /**
      * @param Bard $bard
+     * @param Writer $writer
      */
-    public function __construct(Bard $bard)
+    public function __construct(Bard $bard, Writer $writer)
     {
         $this->bard = $bard;
+        $this->writer = $writer;
     }
 
     /**
@@ -43,7 +49,41 @@ class Crozilla implements IntegrationInterface, CrozillaInterface {
      */
     public function generateXML($items, $languages)
     {
-        $root = $this->bard->attachNode('properties');
+        $this->writer->openMemory();
+
+        $this->writer->startElement('properties');
+
+        foreach ($items['data'] as $data)
+        {
+            $property = new Property();
+            $property->propertyId = $data['property-id'];
+            $property->dateListed = $data['date-listed'];
+            $property->propertyType = $data['property-type'];
+            $property->listingType = $data['listing-type'];
+            $property->link = $data['link'];
+            $property->postalCode = $data['postal-code'];
+            $property->city = $data['city'];
+            $property->rooms = $data['rooms'];
+            $property->bedrooms = $data['bedrooms'];
+            $property->bathrooms = $data['bathrooms'];
+            $property->propertySize = $data['property-size'];
+            $property->landSize = $data['land-size'];
+            $property->price = $data['price'];
+            $property->images = $data['images'];
+            $property->title = $data['title'];
+            $property->description = $data['description'];
+            $property->languages = $data['languages'];
+
+            $this->writer->write([
+                'property' => $property
+            ]);
+        }
+
+        $this->writer->endElement();
+
+        return $this->writer->outputMemory();
+
+        /*$root = $this->bard->attachNode('properties');
 
         foreach ($items['data'] as $data)
         {
@@ -93,7 +133,7 @@ class Crozilla implements IntegrationInterface, CrozillaInterface {
 
         }
 
-        return $this->bard->getXML();
+        return $this->bard->getXML();*/
     }
 
 
