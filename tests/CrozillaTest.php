@@ -1,5 +1,8 @@
-<?php
+<?php namespace Tests;
+
 use Mabasic\CrozillaIntegration\Crozilla;
+use Mockery;
+use PHPUnit_Framework_TestCase;
 
 class CrozillaTest extends PHPUnit_Framework_TestCase {
 
