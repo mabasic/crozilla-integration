@@ -56,8 +56,8 @@ class Crozilla implements IntegrationInterface, CrozillaInterface {
             $property = new Property();
             $property->propertyId = $data['property-id'];
             $property->dateListed = $data['date-listed'];
-            $property->propertyType = $data['property-type'];
-            $property->listingType = $data['listing-type'];
+            $property->setPropertyType($data['property-type']);
+            $property->setListingType($data['listing-type']);
             $property->link = $data['link'];
             $property->postalCode = $data['postal-code'];
             $property->city = $data['city'];

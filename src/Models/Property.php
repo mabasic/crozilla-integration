@@ -1,5 +1,7 @@
 <?php namespace Mabasic\CrozillaIntegration\Models;
 
+use Mabasic\CrozillaIntegration\Exceptions\NotSupportedListingTpeException;
+use Mabasic\CrozillaIntegration\Exceptions\NotSupportedPropertyTpeException;
 use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
@@ -20,11 +22,12 @@ class Property implements XmlSerializable {
     /**
      * @var
      */
-    public $propertyType;
+    protected $propertyType;
+
     /**
      * @var
      */
-    public $listingType;
+    protected $listingType;
     /**
      * @var
      */
@@ -89,6 +92,66 @@ class Property implements XmlSerializable {
     public $languages = [];
 
     /**
+     * Holds array of supported listing types.
+     *
+     * @var array
+     */
+    protected $supportedListingTypes = [
+        'sale',
+        'rental',
+        'lease'
+    ];
+
+    /**
+     * Holds array of supported property types.
+     *
+     * @var array
+     */
+    protected $supportedPropertyTypes = [
+        'apartment',
+        'vacation home',
+        'house',
+        'stone house',
+        'commercial',
+        'office',
+        'catering',
+        'industrial',
+        'plot',
+        'agricultural',
+        'tourist land',
+        'land lease',
+        'cottage',
+        'garage',
+        'rooms',
+        'hotel',
+        'cemetery'
+    ];
+
+    /**
+     * @param mixed $listingType
+     * @throws NotSupportedListingTpeException
+     */
+    public function setListingType($listingType)
+    {
+        if ( ! in_array($listingType, $this->supportedListingTypes))
+            throw new NotSupportedListingTpeException($listingType);
+
+        $this->listingType = $listingType;
+    }
+
+    /**
+     * @param mixed $propertyType
+     * @throws NotSupportedPropertyTpeException
+     */
+    public function setPropertyType($propertyType)
+    {
+        if ( ! in_array($propertyType, $this->supportedListingTypes))
+            throw new NotSupportedPropertyTpeException($propertyType);
+
+        $this->propertyType = $propertyType;
+    }
+
+    /**
      * @param Writer $writer
      */
     function xmlSerialize(Writer $writer)
@@ -135,7 +198,7 @@ class Property implements XmlSerializable {
     {
         $writer->startElement('images');
 
-        foreach($this->images as $image)
+        foreach ($this->images as $image)
         {
             $writer->startElement('image');
             $writer->write($image);
@@ -150,7 +213,7 @@ class Property implements XmlSerializable {
      */
     private function addLanguages(Writer $writer)
     {
-        foreach($this->languages as $language)
+        foreach ($this->languages as $language)
         {
             $code = strtoupper($language['code']);
             $writer->writeElement("title-{$code}", $language['title']);
