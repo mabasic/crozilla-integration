@@ -145,7 +145,7 @@ class Property implements XmlSerializable {
      */
     public function setPropertyType($propertyType)
     {
-        if ( ! in_array($propertyType, $this->supportedListingTypes))
+        if ( ! in_array($propertyType, $this->supportedPropertyTypes))
             throw new NotSupportedPropertyTpeException($propertyType);
 
         $this->propertyType = $propertyType;
