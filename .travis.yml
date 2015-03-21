@@ -7,4 +7,4 @@ php:
   - hhvm
 
 install:
-  - composer install --prefer-source --no-interaction --no-dev
+  - composer install --prefer-source --no-interaction
