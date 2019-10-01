@@ -1,10 +1,8 @@
 # Crozilla Integration
 
-[![Build Status](https://travis-ci.org/mabasic/crozilla-integration.svg)](https://travis-ci.org/mabasic/crozilla-integration) [![Latest Stable Version](https://poser.pugx.org/mabasic/crozilla-integration/v/stable.svg)](https://packagist.org/packages/mabasic/crozilla-integration) [![Total Downloads](https://poser.pugx.org/mabasic/crozilla-integration/downloads.svg)](https://packagist.org/packages/mabasic/crozilla-integration) [![Latest Unstable Version](https://poser.pugx.org/mabasic/crozilla-integration/v/unstable.svg)](https://packagist.org/packages/mabasic/crozilla-integration) [![License](https://poser.pugx.org/mabasic/crozilla-integration/license.svg)](https://packagist.org/packages/mabasic/crozilla-integration)
+Generates XML response for [Crozilla](http://www.crozilla-nekretnine.com/) real estate sync integration.
 
-> Generates XML response for crozilla real estate sync integration.
-
-**Readme coming soon ...**
+[![Become a Patron](https://img.shields.io/badge/Become%20a-Patron-f96854.svg?style=for-the-badge)](https://www.patreon.com/laravelista)
 
 ## Installation
 
@@ -16,10 +14,18 @@ Add to your `composer.json` section `require`:
 
 Then do `composer update`.
 
-## Usage
+## Laravelista Sponsors & Backers
 
-**Coming soon...**
+I would like to extend my thanks to the following sponsors & backers for funding my open-source journey. If you are interested in becoming a sponsor or backer, please visit the Laravelista [Backers page](https://laravelista.hr/backers).
 
-## ToDo
+## Contributing
 
-- [ ] Write Unit tests
+Thank you for considering contributing to Crozilla Integration! The contribution guide can be found on the [Laravelista website](https://laravelista.hr/contributing).
+
+## Code of Conduct
+
+In order to ensure that the Laravelista community is welcoming to all, please review and abide by the [Code of Conduct](https://laravelista.hr/code-of-conduct).
+
+## License
+
+Crozilla Integration is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
